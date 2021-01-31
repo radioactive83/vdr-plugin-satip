@@ -287,15 +287,15 @@ bool cSatipDevice::ProvidesChannel(const cChannel *channelP, int priorityP, bool
               if (channelP->Vpid() && !HasPid(channelP->Vpid()) || channelP->Apid(0) && !HasPid(channelP->Apid(0)) || channelP->Dpid(0) && !HasPid(channelP->Dpid(0))) {
                  if (CamSlot() && channelP->Ca() >= CA_ENCRYPTED_MIN) {
                     if (CamSlot()->CanDecrypt(channelP))
-                       result = true;
+                       result = !!SatipConfig.GetFrontendReuse();
                     else
                        needsDetachReceivers = true;
                     }
                  else
-                    result = true;
+                    result = !!SatipConfig.GetFrontendReuse();
                  }
               else
-                 result = !!SatipConfig.GetFrontendReuse();
+                 result = true;
               }
            else
               needsDetachReceivers = true;
