@@ -368,6 +368,10 @@ bool cSatipDevice::SetChannelDevice(const cChannel *channelP, bool liveViewP)
         debug9("%s No suitable server found [device %u]", __PRETTY_FUNCTION__, deviceIndexM);
         return false;
         }
+     if (isOpenDvrM && pTunerM && channelM.GetChannelID() == channelP->GetChannelID() && strcmp(channelM.ToText(), channelP->ToText()) == 0) {
+        pTunerM->RefreshSource();
+        return true;
+        }
      if (pTunerM && pTunerM->SetSource(server, channelP->Transponder(), *params, deviceIndexM)) {
         channelM = *channelP;
         deviceNameM = cString::sprintf("%s %d %s", *DeviceType(), deviceIndexM, *cSatipDiscover::GetInstance()->GetServerString(server));

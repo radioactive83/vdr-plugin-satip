@@ -442,6 +442,12 @@ int cSatipTuner::GetId(void)
   return deviceIdM;
 }
 
+bool cSatipTuner::RefreshSource()
+{
+  setupTimeoutM.Set(eSetupTimeoutMs);
+  return true;
+}
+
 bool cSatipTuner::SetSource(cSatipServer *serverP, const int transponderP, const char *parameterP, const int indexP)
 {
   debug1("%s (%d, %s, %d) [device %d]", __PRETTY_FUNCTION__, transponderP, parameterP, indexP, deviceIdM);

@@ -150,6 +150,7 @@ public:
   cSatipTuner(cSatipDeviceIf &deviceP, unsigned int packetLenP);
   virtual ~cSatipTuner();
   bool IsTuned(void) const { return (currentStateM >= tsTuned); }
+  bool RefreshSource();
   bool SetSource(cSatipServer *serverP, const int transponderP, const char *parameterP, const int indexP);
   bool SetPid(int pidP, int typeP, bool onP);
   bool Open(void);
